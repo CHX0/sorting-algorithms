@@ -14,7 +14,7 @@ import java.util.Random;
 public class SortingAlgorithms
 {
 
-    static final int arraySize = 5;
+    static final int arraySize = 20;
     static final int maxValue = 50;
     static final int MAX = 32767;
 
@@ -22,59 +22,53 @@ public class SortingAlgorithms
 
     public static void main(String[] args)
     {
-//        // Bubble sort
-//        generateData(maxValue);
-//        printArrayContents("\nUnsorted		");
-//
-//        System.out.println("Sorting...");
-//        bubbleSort();
-//        printArrayContents("Bubble			");
-//
-//        // Bubble sort optimised
-//        generateData(maxValue);
-//        printArrayContents("\nUnsorted		");
-//
-//        System.out.println("Sorting...");
-//        bubbleSort_opt();
-//        printArrayContents("Bubble opt		");
-//
-//        // Cocktail Shaker sort
-//        generateData(maxValue);
-//        printArrayContents("\nUnsorted		");
-//
-//        System.out.println("Sorting...");
-//        shakerSort();
-//        printArrayContents("Shaker			");
-//
-//        // Cocktail Shaker sort optimised
-//        generateData(maxValue);
-//        printArrayContents("\nUnsorted		");
-//
-//        System.out.println("Sorting...");
-//        shakerSort_opt();
-//        printArrayContents("Shaker opt		");
-//
-//        // Shuttle sort optimised
-//        generateData(maxValue);
-//        printArrayContents("\nUnsorted		");
-//
-//        System.out.println("Sorting...");
-//        shuttleSort();
-//        printArrayContents("Shuttle			");
-//
-//        // Selection sort
-//        generateData(maxValue);
-//        printArrayContents("\nUnsorted		");
-//
-//        System.out.println("Sorting...");
-//        selectionSort();
-//        printArrayContents("Selection		");
+        // Bubble sort
+        generateData(maxValue);
+        printArrayContents("\nUnsorted		");
+
+        bubbleSort();
+        printArrayContents("Bubble			");
+
+        // Bubble sort optimised
+        generateData(maxValue);
+        printArrayContents("\nUnsorted		");
+
+        bubbleSort_opt();
+        printArrayContents("Bubble opt		");
+
+        // Cocktail Shaker sort
+        generateData(maxValue);
+        printArrayContents("\nUnsorted		");
+
+        System.out.println("Sorting...");
+        shakerSort();
+        printArrayContents("Shaker			");
+
+        // Cocktail Shaker sort optimised
+        generateData(maxValue);
+        printArrayContents("\nUnsorted		");
+
+        shakerSort_opt();
+        printArrayContents("Shaker opt		");
+
+        // Shuttle sort optimised
+        generateData(maxValue);
+        printArrayContents("\nUnsorted		");
+
+        shuttleSort();
+        printArrayContents("Shuttle			");
+
+        // Selection sort
+        generateData(maxValue);
+        printArrayContents("\nUnsorted		");
+
+        selectionSort();
+        printArrayContents("Selection		");
 
         // Insertion sort
         generateData(maxValue);
         printArrayContents("\nUnsorted		");
 
-        System.out.println("Sorting...");
         insertionSort();
         printArrayContents("Insertion		");
     }
@@ -101,42 +95,108 @@ public class SortingAlgorithms
         System.out.println("}");
     }
 
-    static void swap(int[] a, int k, int l)
+    static void swap(int k, int l)
     {
-        int temp = a[k];
-        a[k] = a[l];
-        a[l] = temp;
+        int temp = dataArray[k];
+        dataArray[k] = dataArray[l];
+        dataArray[l] = temp;
     }
 
     // SORTING ALGORITHMS ###########################
     // bubble Sort
     static void bubbleSort()
     {
-        // YOUR CODE GOES HERE
+        for (int i = 0; i < dataArray.length; i++)
+        {
+            for (int j = 0; j < dataArray.length - 1; j++)
+            {
+                if (dataArray[j + 1] < dataArray[j])
+                {
+                    swap(j, j + 1);
+                }
+            }
+        }
     }
 
     // bubble Sort optimized
     static void bubbleSort_opt()
     {
-        // YOUR CODE GOES HERE
+
+        for (int i = 0; i < dataArray.length; i++)
+        {
+            for (int j = 0; j < dataArray.length - i - 1; j++)
+            {
+                if (dataArray[j + 1] < dataArray[j])
+                {
+                    swap(j, j + 1);
+                }
+            }
+        }
     }
 
     // CocktailShaker Sort
     static void shakerSort()
     {
-        // YOUR CODE GOES HERE
+        for (int i = 0; i < dataArray.length / 2; i++)
+        {
+            for (int j = 0; j < dataArray.length - 1; j++)
+            {
+                if (dataArray[j] > dataArray[j + 1])
+                {
+                    swap(j, j + 1);
+                }
+            }
+
+            for (int j = dataArray.length - 2; j > 0; j--)
+            {
+                if (dataArray[j] < dataArray[j - 1])
+                {
+                    swap(j, j - 1);
+                }
+            }
+        }
     }
 
     // CocktailShaker Sort optimized
     static void shakerSort_opt()
     {
-        // YOUR CODE GOES HERE
+        for (int i = 0; i < dataArray.length / 2; i++)
+        {
+            for (int j = i; j < dataArray.length - i - 1; j++)
+            {
+                if (dataArray[j] > dataArray[j + 1])
+                {
+                    swap(j, j + 1);
+                }
+            }
+
+            for (int j = dataArray.length - i - 2; j > i; j--)
+            {
+                if (dataArray[j] < dataArray[j - 1])
+                {
+                    swap(j, j - 1);
+                }
+            }
+        }
     }
 
     // ShuttleShaker Sort
     static void shuttleSort()
     {
-        // YOUR CODE GOES HERE
+        for (int i = 1; i < dataArray.length - 1; i++)
+        {
+            if (dataArray[i] > dataArray[i + 1])
+            {
+                swap(i, i + 1);
+                for (int j = i; j > 0; j--)
+                {
+                    if (dataArray[j] < dataArray[j - 1])
+                    {
+                        swap(j, j - 1);
+                    }
+                }
+            }
+        }
     }
 
     // Selection Sort
@@ -153,10 +213,7 @@ public class SortingAlgorithms
                     min = j;
                 }
             }
-            //System.out.println("Min of this pass is: " + dataArray[min]);
-            temp = dataArray[i];
-            dataArray[i] = dataArray[min];
-            dataArray[min] = temp;
+            swap(i, min);
         }
     }
 
@@ -166,17 +223,16 @@ public class SortingAlgorithms
         int num, j;
         for (int i = 1; i < dataArray.length; i++)
         {
-            num = dataArray[i];           
+            num = dataArray[i];
             j = i - 1;
-            
-            System.out.println(dataArray[j]);
-            while(j >= 0 && dataArray[j] > num)
+
+            while (j >= 0 && dataArray[j] > num)
             {
                 dataArray[j + 1] = dataArray[j];
                 j--;
-            }  
-            dataArray[j + 1] = num;         
+            }
+            dataArray[j + 1] = num;
         }
     }
-    
+
 }
